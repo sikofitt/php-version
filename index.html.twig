@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Recent Version of PHP</title>
+  <link rel="stylesheet" type="text/css" href="vendor/uikit/css/uikit.almost-flat.min.css"/>
+  <style type="text/css">
+    .uk-modal-content h3 {
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="uk-container uk-container-center uk-margin-large-top uk-margin-large-bottom">
+    <h1 class="uk-text-center uk-text-primary">Recent RC Version of PHP</h1>
+    {% if  release is null %}
+    <div class="uk-width-1-1">
+      <h3>No RC Releases Found.</h3>
+    </div>
+    {% else %}
+    <div class="uk-width-1-1">
+      {% set fullVersion = release.version ~ release.release.type ~ release.release.number %}
+      <h3 class="uk-align-medium-left">{{ fullVersion }}</h3>
+      <div class="uk-grid uk-grid-large">
+
+        {% for file in release.release.files %}
+
+          <div class="uk-width-1-3">
+            <div class="uk-panel uk-panel-box uk-grid">
+              <div class="uk-panel-badge uk-badge">{{ file.type|upper }}</div>
+              <h3 class="uk-panel-title">php-{{ fullVersion }}.tar.{{ file.type }}</h3>
+              <div class="uk-width-1-1 uk-grid">
+                <div class="uk-width-1-3">
+                  <a href="{{ file.path }}" title="{{ file.type|upper }}">Download</a>
+                </div>
+                <div class="uk-width-1-3">
+                  <a href="javascript:;;" onclick="UIkit.modal.alert('<h3>{{ file.md5 }}<?h3>');">MD5</a>
+                </div>
+                <div class="uk-width-1-3">
+                  <a href="javascript:;;" onclick="UIkit.modal.alert('<h3>{{ file.sha256 }}</h3>');">SHA256</a></div>
+              </div>
+            </div>
+          </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="vendor/uikit/js/uikit.min.js"></script>
+</body>
+</html>

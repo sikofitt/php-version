@@ -1,0 +1,21 @@
+{
+  "name": "sikofitt/php-version",
+  "authors": [
+    "sikofitt <sikofitt@gmail.com>"
+  ],
+  "description": "Pulls version information from qa.php.net/api.php",
+  "main": "",
+  "license": "GPL-3.0",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "uikit": "^2.27.2"
+  }
+}
